@@ -6,7 +6,7 @@ class Register extends Component{
     constructor(){
         super();
         this.state={
-          uname:'',
+          name:'',
           email:'',
           password:'',
           mobile:'',
@@ -16,7 +16,7 @@ class Register extends Component{
 
     processName = (obj) =>{
         this.setState({
-            uname:obj.target.value
+            name:obj.target.value
         })
     }
     processEmail = (obj) =>{
@@ -38,7 +38,7 @@ class Register extends Component{
     save = () =>{
         var url = "http://localhost:2222/register";
         var jsonData = {
-            "uname":this.state.uname, 
+            "uname":this.state.name, 
             "email":this.state.email,
             "password":this.state.password,
             "mobile":this.state.mobile,
@@ -51,9 +51,6 @@ class Register extends Component{
        
         })
      }
-
-
-
 
     render(){
         return(
