@@ -56,6 +56,9 @@ class Login extends Component{
                     </div>
                     <div className="col-md-4"></div>
                     <div className="col-md-4">
+                        <p className="text-center mt-2">
+                        <Link to="/"> <i className="fa fa-home fa-1x"> <br/>Continue Shopping</i></Link>
+                        </p>
                         <h5 className="text-primary text-center fw-bold-h1 mt-2"> {this.state.message} </h5>
                         <div className="card mt-5">
                             <div className="card-header"> 
@@ -64,7 +67,7 @@ class Login extends Component{
                                     </i> Login
                             </span> 
 
-                           <Link to="/" style={{textDecoration:'none'}}>
+                           <Link to="/register" style={{textDecoration:'none'}}>
                            <span className="text-warning">
                                 <i className="fas fa-user-plus">
                                     </i> New ? Register
