@@ -1,11 +1,10 @@
 import React,{useState, useEffect} from 'react';
-import Apple from './apple.jpg';
 import {Link} from 'react-router-dom'
 const MyHome = () =>{
 const [product, updateProduct] = useState([]);
 
       const getProduct = () =>{
-      const url = 'http://localhost:2222/products';
+      const url = 'http://localhost:2222/product';
       fetch(url)
       .then(response => response.json())
       .then(allproduct => updateProduct(allproduct))
@@ -35,7 +34,7 @@ const [product, updateProduct] = useState([]);
                 <Link className="nav-link active" aria-current="page" to='/login'><i className="fa fa-lock"></i> Vendor Login</Link>
             </li>
             <li className="nav-item">
-                <Link className="nav-link active" aria-current="page" to='/home'><i className="fa fa-user-plus"></i> Vendor Register</Link>
+                <Link className="nav-link active" aria-current="page" to='/register'><i className="fa fa-user-plus"></i> Vendor Register</Link>
             </li>
             </ul>
             </div>
@@ -48,7 +47,7 @@ const [product, updateProduct] = useState([]);
                         return(
                             <div className="col-xl-3 col-md-4 col-sm-6 col-12 mb-3 mt-5" key={index}>
                                 <div className="border rounded p-3">
-                                    {/* <img src={Apple} className="img-fluid" style={{background:'transparent'}} /> */}
+                                     <img  src={product.photo} className="rounded" height="120" width="95%"  />
                                     <h4>  {product.name}  </h4>
                                     <p> {product.details} </p>
                                     <p> Rs. {product.price}   </p>

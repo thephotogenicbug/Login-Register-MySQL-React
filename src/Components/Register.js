@@ -63,7 +63,7 @@ class Register extends Component{
                           
                             <div className="card-header">
                             <span className="text-danger">
-                                <i className="fas fa-user-plus "></i> Register
+                                <i className="fas fa-user-plus "></i> Vendor Register
                             </span> 
 
                             <Link to="/login" style={{textDecoration:'none'}}>

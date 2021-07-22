@@ -51,9 +51,6 @@ class Login extends Component{
         return(
             <div className="container mt-5">
                 <div className="row">
-                    <div className="col-md-12 text-center">
-                     <h2>  Server Side Register & Login </h2>
-                    </div>
                     <div className="col-md-4"></div>
                     <div className="col-md-4">
                         <p className="text-center mt-2">
@@ -64,7 +61,7 @@ class Login extends Component{
                             <div className="card-header"> 
                             <span className="text-danger">
                                 <i className="fas fa-lock ">
-                                    </i> Login
+                                    </i> Vendor Login
                             </span> 
 
                            <Link to="/register" style={{textDecoration:'none'}}>
