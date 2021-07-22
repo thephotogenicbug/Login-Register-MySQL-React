@@ -4,6 +4,7 @@ import axios from 'axios';
 
 const Home = () =>{
     const[product, getProduct] = useState([]);
+    
     const[name , pickName] = useState("");
     const[price , pickPrice] = useState("");
     const[qty , pickQty] = useState("");
@@ -12,7 +13,6 @@ const Home = () =>{
 
 
     const FetchProduct = () =>{
-        // var url="";
         fetch("http://localhost:2222/product")
         .then(response=> response.json())
         .then(result => getProduct(result))
@@ -34,7 +34,7 @@ const Home = () =>{
         <>
             <nav className="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
                 <div className="container-fluid">
-                    <a className="navbar-brand"><i className="fa fa-building"></i> Cybotrix Technology</a>
+                    <a className="navbar-brand"><i className="fa fa-shopping-cart"></i> React Shopping</a>
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
                     </button>
@@ -58,7 +58,7 @@ const Home = () =>{
             <div className="container mt-5 pt-4">
               <div className="row">
                   <div className="col-lg-3">
-                      <h1 className="text-center"> Add New Product </h1>
+                      <h4 className="text-center"> Add New Product </h4>
                       <p className="text-center text-danger"> {message} </p>
                     <div className="mb-3">
                         <label>Enter Product Name </label>
@@ -80,7 +80,7 @@ const Home = () =>{
                         <button className="btn btn-warning" onClick={save}> Save Product </button>
                     </div>
                   </div>
-                  <div className="col-md-9 mt-5 pt-2">
+                  <div className="col-md-9 mt-1 pt-2">
                 <table className="table table-sm table-bordered text-center">
                       <thead>
                       <tr>
