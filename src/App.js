@@ -4,6 +4,7 @@ import Login from './Components/login';
 import Register from './Components/Register'
 import Home from './Components/Home';
 import MyHome from './Components/myhome';
+import Cart from './Components/cart'
 function App() {
   if(localStorage.getItem("id") == null){
      return(
@@ -11,6 +12,7 @@ function App() {
       <Route exact path="/" component={MyHome}/>
       <Route exact path="/login" component={Login}/>
       <Route exact path="/register" component={Register}/>
+      <Route exact path="/cart" component={Cart}/>
       </HashRouter>
      )
   }else{

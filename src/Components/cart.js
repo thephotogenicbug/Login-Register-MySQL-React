@@ -2,22 +2,11 @@ import React,{useState, useEffect} from 'react';
 import {Link} from 'react-router-dom'
 import axios from 'axios';
 
-const MyHome = () =>{
+const Cart = () =>{
 
-    
-
-      //get product list
-      const [product, updateProduct] = useState([]);
-      const getProduct = () =>{
-      const url = 'http://localhost:2222/product';
-      fetch(url)
-      .then(response => response.json())
-      .then(allproduct => updateProduct(allproduct))
-  }
-
-  useEffect(() =>{
-   getProduct();  // pass in const function inside useEffect to avoid infinite call and file from crashing  and on load get product details 
-   getCart();
+  
+  useEffect(() =>{ 
+   getCart(); // pass in const function inside useEffect to avoid infinite call and file from crashing  and on load get product details 
   },[])
 
 
@@ -30,18 +19,8 @@ const MyHome = () =>{
     .then(result => updateCart(result))
   }
 
-  // add to cart
+  
     const[message, updateMessage] = useState("");
-    const addTocart = (iteminfo) =>{
-    axios.post("http://localhost:2222/addtocart", iteminfo)
-    .then(response =>{
-        // alert(response.data);
-        updateMessage(response.data); 
-        getCart() // cart should get refresh
-       
-    })
-    // console.log(iteminfo)
-  }
 
     return(
         <>
@@ -57,7 +36,7 @@ const MyHome = () =>{
                 <Link className="nav-link active" aria-current="page" to='/'><i className="fa fa-home"></i> Home</Link>
             </li> 
             <li className="nav-item">                                                                                        
-                <Link className="nav-link active" aria-current="page" to='/cart'><i className="fa fa-shopping-cart"></i> ({cartitem.length}) Cart Item</Link>
+                <Link className="nav-link active" aria-current="page" to='/'><i className="fa fa-shopping-cart"></i> ({cartitem.length}) Cart Item</Link>
             </li>  
             <li className="nav-item">
                 <Link className="nav-link active" aria-current="page" to='/login'><i className="fa fa-lock"></i> Vendor Login</Link>
@@ -73,29 +52,36 @@ const MyHome = () =>{
         <p className="text-center text-primary mt-5"> {message}</p>
         <div className="container mt-5">
             <div className="row text-center">
-                {
-                    product.map((product, index)=>{
-                        return(
-                            <div className="col-xl-3 col-md-4 col-sm-6 col-12 mb-3 mt-5" key={index}>
-                                <div className="card p-3">
-                                   <div className="card-body">
-                                    <img  src={product.photo} className="img-fluid"   />
-                                    <h4>{product.name}  </h4>
-                                    <label> {product.details} </label>
-                                    <p> Rs. {product.price}   </p>                      {/* product is holding product details */}
-                                    <button className="btn btn-primary" onClick={addTocart.bind(this, product)}>
-                                        Add to Cart <i className="fa fa-shopping-cart"></i>
-                                    </button>
-                                   </div>
-                                </div>
-                            </div>
-                        )
-                    })
-                }
+               <div className="col-lg-4"></div>
+               <div className="col-lg-8">
+                   <h3>Items in Cart</h3>
+                   <table className="table table-bordered">
+                      <thead>
+                          <tr>
+                              <th>Product Name</th>
+                              <th>Quantity</th>
+                              <th>Photo</th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          {
+                              cartitem.map((product, index)=>{
+                                  return(
+                                      <tr key={index}>
+                                        <th>{product.name}</th>
+                                        <th>{product.qty}</th>
+                                        <th><img src={product.photo} height="50px"/></th>
+                                      </tr>
+                                  )
+                              })
+                          }
+                      </tbody>
+                   </table>
+               </div>
             </div>
         </div>
         </>
     )
 
 }
-export default MyHome;
+export default Cart;

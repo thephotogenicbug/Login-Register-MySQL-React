@@ -8,7 +8,7 @@ const Home = () =>{
     const[price , pickPrice] = useState("");
     const[qty , pickQty] = useState("");
     const[details , pickDetails] = useState("");
-    const[photo , pickPhoto] = useState("");
+    // const[photo , pickPhoto] = useState("");
     const[message , updateMessage] = useState("Please Enter Product Information");
 
 
@@ -16,7 +16,6 @@ const Home = () =>{
         // fetch("http://localhost:2222/vendorproduct")
         // .then(response=> response.json())
         // .then(result => getProduct(result))
-        
         var input ={"vid":localStorage.getItem("id")};
         var url = "http://localhost:2222/vendorproduct";
         axios.post(url,input)
@@ -29,7 +28,7 @@ const Home = () =>{
 
     const save = () =>{
         var vid = localStorage.getItem("id"); // vendor id
-        var input = { "pname":name , "pprice":price, "pqty":qty, "pdetails":details, "pic": photo, "vid":vid};
+        var input = { "pname":name , "pprice":price, "pqty":qty, "pdetails":details, "vid":vid};
         var url = "http://localhost:2222/saveproduct";
         axios.post(url , input).then(response=>{
             updateMessage(response.data);
@@ -38,7 +37,7 @@ const Home = () =>{
             pickPrice(""); 
             pickQty(); 
             pickDetails(""); 
-            pickPhoto("");
+            // pickPhoto("");
         })
     }
 
@@ -89,11 +88,11 @@ const Home = () =>{
                         <textarea className="form-control" value={details}
                         onChange={obj=>pickDetails(obj.target.value)}></textarea>
                     </div>
-                    <div className="mb-3">
+                     {/* <div className="mb-3">
                         <label>Photo url</label>
                         <textarea className="form-control" value={photo}
                         onChange={obj=>pickPhoto(obj.target.value)}></textarea>
-                    </div>
+                    </div> */}
                     <div className="text-center">
                         <button className="btn btn-warning" onClick={save}> 
                         Save Product 
