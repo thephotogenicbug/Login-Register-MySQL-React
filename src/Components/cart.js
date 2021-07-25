@@ -4,13 +4,7 @@ import axios from 'axios';
 
 const Cart = () =>{
 
-  
-  useEffect(() =>{ 
-   getCart(); // pass in const function inside useEffect to avoid infinite call and file from crashing  and on load get product details 
-  },[])
-
-
-  // get cart item
+  // get function get cart item
     const[cartitem, updateCart] = useState([]);
     const getCart = () =>{
     const url = 'http://localhost:2222/cartitem';
@@ -19,8 +13,25 @@ const Cart = () =>{
     .then(result => updateCart(result))
   }
 
-  
+  useEffect(() =>{ 
+    getCart(); // pass in const function inside useEffect to avoid infinite call and file from crashing  and on load get product details 
+   },[])
+
+   // post function  place order function
     const[message, updateMessage] = useState("");
+    const[name, pickName] = useState("");
+    const[mobile, pickMobile] = useState("");
+    const[address, pickAddress] = useState("");
+    const save = () =>{
+         var url ="http://localhost:2222/placeorder";
+         var data ={"cname":name, "mobile":mobile, "address":address};
+         axios.post(url, data)
+         .then(response =>{
+             updateMessage(response.data)
+             getCart(); // after placing order clear cart data
+         })
+
+    }
 
     return(
         <>
@@ -52,10 +63,38 @@ const Cart = () =>{
         <p className="text-center text-primary mt-5"> {message}</p>
         <div className="container mt-5">
             <div className="row text-center">
-               <div className="col-lg-4"></div>
+               <div className="col-lg-4">
+                   <div className="bg-light p-4 rounded">
+                       <h4 className="text-primary text-center">Customer Details </h4>
+                       <div className="mb-3">
+                           <label>Customer Name</label>
+                           <input type="text" 
+                           className="form-control"
+                           onChange={obj=>pickName(obj.target.value)}
+                           />
+                       </div>
+                       <div className="mb-3">
+                           <label>Mobile No</label>
+                           <input type="text" 
+                           className="form-control"
+                           onChange={obj=>pickMobile(obj.target.value)}
+                           />
+                       </div>
+                       <div className="mb-3">
+                           <label>Delivery Address</label>
+                           <textarea type="text" 
+                           className="form-control"
+                           onChange={obj=>pickAddress(obj.target.value)}>
+                           </textarea>
+                       </div>
+                       <div className="text-center" onClick={save}>
+                           <button className="btn btn-primary">Place Order</button>
+                       </div>
+                   </div>
+               </div>
                <div className="col-lg-8">
                    <h3>Items in Cart</h3>
-                   <table className="table table-bordered">
+                   <table className="table table-bordered table-sm text-center">
                       <thead>
                           <tr>
                               <th>Product Name</th>

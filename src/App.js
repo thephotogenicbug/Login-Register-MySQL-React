@@ -5,6 +5,7 @@ import Register from './Components/Register'
 import Home from './Components/Home';
 import MyHome from './Components/myhome';
 import Cart from './Components/cart'
+import MyOrder from './Components/MyOrder';
 function App() {
   if(localStorage.getItem("id") == null){
      return(
@@ -19,7 +20,9 @@ function App() {
 
     return (
       <HashRouter>
+        <Route exact path="/" component={Home}/>
         <Route exact path="/home" component={Home}/>
+        <Route exact path="/myorder" component={MyOrder}/>
       </HashRouter>
   );
   }

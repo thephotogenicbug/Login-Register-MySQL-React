@@ -90,7 +90,7 @@ class Login extends Component{
 
                             </div>
                             <div className="card-footer text-center">
-                                <button className="btn" onClick={this.login}>
+                                <button className="btn btn-success" onClick={this.login}>
                                     Login <i className="fas fa-arrow-circle-right"></i>
                                 </button>
                             </div>

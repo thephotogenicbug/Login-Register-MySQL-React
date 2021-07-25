@@ -1,17 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { Link, Switch, Route } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 const Home = () =>{
+
     const[product, getProduct] = useState([]);
-    const[name , pickName] = useState("");
-    const[price , pickPrice] = useState("");
-    const[qty , pickQty] = useState("");
-    const[details , pickDetails] = useState("");
-    // const[photo , pickPhoto] = useState("");
     const[message , updateMessage] = useState("Please Enter Product Information");
-
-
+    // fetch function 
     const FetchProduct = () =>{
         // fetch("http://localhost:2222/vendorproduct")
         // .then(response=> response.json())
@@ -21,10 +16,17 @@ const Home = () =>{
         axios.post(url,input)
         .then(response => getProduct(response.data))
     }
+
     useEffect(()=>{
         FetchProduct();
     },[])
-   
+
+    // post function
+    const[name , pickName] = useState("");
+    const[price , pickPrice] = useState("");
+    const[qty , pickQty] = useState("");
+    const[details , pickDetails] = useState("");
+    // const[photo , pickPhoto] = useState("");
 
     const save = () =>{
         var vid = localStorage.getItem("id"); // vendor id
@@ -51,6 +53,11 @@ const Home = () =>{
                     </button>
                     <div className="collapse navbar-collapse" id="navbarCollapse">
                     <ul className="navbar-nav ms-auto mb-2 mb-md-0">
+                    <li  className="nav-item">
+                            <Link to='/myorder' className="nav-link" >   
+                                    <i className="fa fa-suitcase"></i> Myorders
+                            </Link>
+                        </li>
                         <li className="nav-item">
                             <Link className="nav-link" onClick={Logout}>
                                 Welcome - {localStorage.getItem("name")}   

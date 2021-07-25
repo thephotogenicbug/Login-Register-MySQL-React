@@ -35,6 +35,8 @@ class Register extends Component{
         })
     }
     
+
+    // post function class component
     save = () =>{
         var url = "http://localhost:2222/register";
         var jsonData = {
@@ -100,7 +102,7 @@ class Register extends Component{
                                 </div>
                             </div>
                             <div className="card-footer text-center">
-                            <button className="btn" onClick={this.save}>
+                            <button className="btn btn-danger" onClick={this.save}>
                                 <i className="fas fa-user-plus"></i> Register 
                             </button>
                             </div>

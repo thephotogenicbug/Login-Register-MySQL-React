@@ -4,8 +4,6 @@ import axios from 'axios';
 
 const MyHome = () =>{
 
-    
-
       //get product list
       const [product, updateProduct] = useState([]);
       const getProduct = () =>{
@@ -15,14 +13,16 @@ const MyHome = () =>{
       .then(allproduct => updateProduct(allproduct))
   }
 
+
+  // always use useEffect
   useEffect(() =>{
    getProduct();  // pass in const function inside useEffect to avoid infinite call and file from crashing  and on load get product details 
    getCart();
   },[])
 
 
-  // get cart item
-    const[cartitem, updateCart] = useState([]);
+  // get function functional component get cart item
+    const[cartitem, updateCart] = useState([]);  // get cart length
     const getCart = () =>{
     const url = 'http://localhost:2222/cartitem';
     fetch(url)
@@ -30,7 +30,8 @@ const MyHome = () =>{
     .then(result => updateCart(result))
   }
 
-  // add to cart
+
+  // post function functional component add to cart
     const[message, updateMessage] = useState("");
     const addTocart = (iteminfo) =>{
     axios.post("http://localhost:2222/addtocart", iteminfo)
