@@ -1,9 +1,12 @@
 import React,{useState, useEffect} from 'react';
+import useSound from 'use-sound';
 import {Link} from 'react-router-dom'
 import axios from 'axios';
+import Sound from './test.mp3'
 
 const MyHome = () =>{
 
+    const [play] = useSound(Sound, { volume: 0.2 });
       //get product list
       const [product, updateProduct] = useState([]);
       const getProduct = () =>{
@@ -23,11 +26,13 @@ const MyHome = () =>{
 
   // get function functional component get cart item
     const[cartitem, updateCart] = useState([]);  // get cart length
+
     const getCart = () =>{
     const url = 'http://localhost:2222/cartitem';
     fetch(url)
     .then(response => response.json())
     .then(result => updateCart(result))
+    play();
   }
 
 
